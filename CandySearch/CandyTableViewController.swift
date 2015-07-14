@@ -8,10 +8,11 @@
 
 import UIKit
 
-class CandyTableViewController: UITableViewController, UISearchResultsUpdating {
+class CandyTableViewController: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate {
     var candies = [Candy]()
     var filteredCandies = [Candy]()
     var resultSearchController = UISearchController()
+    var selectedScope = "All"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,8 @@ class CandyTableViewController: UITableViewController, UISearchResultsUpdating {
             controller.searchResultsUpdater = self
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.sizeToFit()
+            controller.searchBar.scopeButtonTitles = ["All", "Chocolate", "Hard", "Other"]
+            controller.searchBar.delegate = self
             
             self.tableView.tableHeaderView = controller.searchBar
             
@@ -44,7 +47,6 @@ class CandyTableViewController: UITableViewController, UISearchResultsUpdating {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "DetailSegue" {
-            println("Hello")
             let controller = segue.destinationViewController as! UIViewController
             
             if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
@@ -58,11 +60,11 @@ class CandyTableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     // MARK - Helpers methods
-    func filterContentForSearchText(searchText: String) {
-        // Filter the array using the filter method
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
         self.filteredCandies = self.candies.filter({( candy: Candy ) -> Bool in
+            var categoryMatch = (scope == "All") || (candy.category == scope)
             let stringMatch = candy.name.rangeOfString(searchText)
-            return stringMatch != nil
+            return categoryMatch && (stringMatch != nil)
         })
     }
     
@@ -94,9 +96,29 @@ class CandyTableViewController: UITableViewController, UISearchResultsUpdating {
     // MARK: - UISearchControllerDelegate
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         filteredCandies.removeAll(keepCapacity: false)
-        filterContentForSearchText(searchController.searchBar.text)
+        filterContentForSearchText(searchController.searchBar.text, scope: selectedScope)
         
         tableView.reloadData()
+    }
+    
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        switch selectedScope {
+        case 0:
+            self.selectedScope = "All"
+            break
+        case 1:
+            self.selectedScope = "Chocolate"
+            break
+        case 2:
+            self.selectedScope = "Hard"
+            break
+        case 3:
+            self.selectedScope = "Other"
+            break
+        default:
+            self.selectedScope = "All"
+            break
+        }
     }
 
 }
