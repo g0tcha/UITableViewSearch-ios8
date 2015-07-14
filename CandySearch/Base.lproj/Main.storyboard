@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="22a-UZ-7CX">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--CandySearch-->
+        <scene sceneID="EGU-ou-9pF">
+            <objects>
+                <tableViewController title="CandySearch" id="z9E-Jg-7gA" customClass="CandyTableViewController" customModule="CandySearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2Jo-UN-IVs">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Ssj-X9-YeI">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ssj-X9-YeI" id="fzW-wu-ifS">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="X92-JM-y1U" kind="show" identifier="DetailSegue" id="eMQ-tp-y5c"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="z9E-Jg-7gA" id="FZn-Yv-YQA"/>
+                            <outlet property="delegate" destination="z9E-Jg-7gA" id="cQe-ez-Ws9"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="CandySearch" id="riN-Dj-hUp"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="cWR-2J-JKd" id="Adp-mq-eMa"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ziR-Sq-Z1u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="cWR-2J-JKd">
+                    <connections>
+                        <outlet property="delegate" destination="z9E-Jg-7gA" id="qyL-9Q-qu0"/>
+                        <outlet property="searchContentsController" destination="z9E-Jg-7gA" id="Jl9-tW-RXi"/>
+                        <outlet property="searchResultsDataSource" destination="z9E-Jg-7gA" id="3Xf-58-uqu"/>
+                        <outlet property="searchResultsDelegate" destination="z9E-Jg-7gA" id="gYe-Py-FZY"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1135" y="513"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="h9B-5Y-yCC">
+            <objects>
+                <viewController id="X92-JM-y1U" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="U58-HY-EIR"/>
+                        <viewControllerLayoutGuide type="bottom" id="tPO-ky-9NN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="O5c-2e-dh9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="utG-JX-Hkr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1919" y="513"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="79g-Ft-srJ">
+            <objects>
+                <navigationController id="22a-UZ-7CX" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QW5-aA-Axi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="z9E-Jg-7gA" kind="relationship" relationship="rootViewController" id="DHg-Fw-8gi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DE6-XU-xhY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="315" y="513"/>
+        </scene>
+    </scenes>
+</document>
