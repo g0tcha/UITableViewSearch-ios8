@@ -101,6 +101,7 @@ class CandyTableViewController: UITableViewController, UISearchResultsUpdating, 
         tableView.reloadData()
     }
     
+    // MARK: - UISearchBarDelegate
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         switch selectedScope {
         case 0:
