@@ -48,9 +48,17 @@ class CandyTableViewController: UITableViewController, UISearchResultsUpdating, 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "DetailSegue" {
             let controller = segue.destinationViewController as! UIViewController
+            let candy: Candy
             
             if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
-                controller.title = candies[indexPath.row].name
+                
+                if resultSearchController.active {
+                    candy = filteredCandies[indexPath.row]
+                } else {
+                    candy = candies[indexPath.row]
+                }
+                
+                controller.title = candy.name
             }
             
             if (self.resultSearchController.active) {
